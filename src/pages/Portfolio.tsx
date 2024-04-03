@@ -2,6 +2,8 @@ import React from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import LaptopImage from "../assets/images/Laptop.png";
 import PlantImage from "../assets/images/Tulip.png";
+import LeavesImage from "../assets/images/Leaves_object.png";
+import GirlLaptop from "../assets/images/girl_laptop.png"
 // Supports weights 400-700
 import "@fontsource-variable/dancing-script";
 import NavigationBar from "../components/NavigationBar";
@@ -49,7 +51,7 @@ export const Portfolio = () => {
           height="100vh"
           sx={{ backgroundColor: "#f6f4f6" }}
         >
-          <Box padding="20px" marginLeft="5%">
+          <Stack display="flex" direction="row" padding="20px" marginLeft="5%">
             <Typography
               variant="h1"
               color="primary"
@@ -58,7 +60,12 @@ export const Portfolio = () => {
             >
               alexandra
             </Typography>
-          </Box>
+            <img
+              alt="girlLaptop"
+              style={{ maxWidth: "50%", maxHeight: "70px", marginLeft: '10px' }}
+              src={GirlLaptop}
+            />
+          </Stack>
           <Stack
             display="flex"
             direction="row"
