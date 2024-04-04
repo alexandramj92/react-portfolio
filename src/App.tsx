@@ -11,6 +11,7 @@ const theme = createTheme({
   typography: {
     fontFamily: ["Urbanist", "sans-serif"].join(","),
     h1: { fontSize: "3rem", fontWeight: 900 },
+    h2: { fontSize: "2.25rem", fontWeight: 500 },
   },
   palette: {
     ...palette,

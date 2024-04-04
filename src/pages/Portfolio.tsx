@@ -1,15 +1,17 @@
 import React from "react";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography, useTheme } from "@mui/material";
 import LaptopImage from "../assets/images/Laptop.png";
 import PlantImage from "../assets/images/Tulip.png";
 import LeavesImage from "../assets/images/Leaves_object.png";
-import GirlLaptop from "../assets/images/girl_laptop.png"
+import GirlLaptop from "../assets/images/girl_laptop.png";
 // Supports weights 400-700
 import "@fontsource-variable/dancing-script";
 import NavigationBar from "../components/NavigationBar";
-import { palette } from "../utils/colors";
+import { ProjectSection } from "../components/ProjectSection";
 
 export const Portfolio = () => {
+  const theme = useTheme();
+
   return (
     <Grid container direction="row">
       <Grid
@@ -27,7 +29,7 @@ export const Portfolio = () => {
           item
           xs={8}
           height="100vh"
-          sx={{ backgroundColor: palette.primary.main }}
+          sx={{ backgroundColor: theme.palette.primary.main }}
         >
           <NavigationBar />
 
@@ -49,7 +51,7 @@ export const Portfolio = () => {
           item
           xs={4}
           height="100vh"
-          sx={{ backgroundColor: "#f6f4f6" }}
+          sx={{ backgroundColor: theme.palette.custom.offWhite }}
         >
           <Stack display="flex" direction="row" padding="20px" marginLeft="5%">
             <Typography
@@ -62,7 +64,7 @@ export const Portfolio = () => {
             </Typography>
             <img
               alt="girlLaptop"
-              style={{ maxWidth: "50%", maxHeight: "70px", marginLeft: '10px' }}
+              style={{ maxWidth: "50%", maxHeight: "70px", marginLeft: "10px" }}
               src={GirlLaptop}
             />
           </Stack>
@@ -99,12 +101,11 @@ export const Portfolio = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#ad8fdb",
+          backgroundColor: theme.palette.secondary.main,
+          padding: '30px'
         }}
       >
-        <Typography variant="h1" color="textPrimary">
-          Projects
-        </Typography>
+        <ProjectSection />
       </Grid>
       <Grid
         item
@@ -114,7 +115,7 @@ export const Portfolio = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#fef8b3",
+          backgroundColor: theme.palette.custom.yellow
         }}
       >
         <Typography variant="h1" color="textPrimary">
@@ -129,7 +130,7 @@ export const Portfolio = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#6fdcbf",
+          backgroundColor: theme.palette.primary.main,
         }}
       >
         <Typography variant="h1" color="textPrimary">
