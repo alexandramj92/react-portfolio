@@ -28,10 +28,9 @@ import LaptopPlantGraphic from "../components/LaptopPlantGraphic";
 export const Portfolio = () => {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const isMobile = useMediaQuery(`(max-width:${breakpoints.sm}px)`);
 
   const isMedium = useMediaQuery(`(max-width:${breakpoints.md}px)`);
-
-  const isLarge = useMediaQuery(`(max-width:${breakpoints.lg}px)`);
 
   return (
     <Grid container direction="row">
@@ -65,7 +64,7 @@ export const Portfolio = () => {
             textAlign="left"
             marginLeft="auto"
             padding="40px"
-            marginTop={isLarge ? "80px" : !isMedium ? "150px" : 0}
+            marginTop={isMobile ? 0 : "80px"}
           >
             <Typography color="textPrimary" variant="h1">
               Full Stack Developer extraordinaire: Turning complex code into
@@ -144,8 +143,7 @@ export const Portfolio = () => {
         elevation={3}
       >
         <BottomNavigation
-                    sx={{ backgroundColor: theme.palette.custom.offWhite }}
-
+          sx={{ backgroundColor: theme.palette.custom.offWhite }}
           showLabels
           value={value}
           onChange={(event, newValue) => {
