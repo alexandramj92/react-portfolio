@@ -1,26 +1,40 @@
 import React from "react";
-import { Box, Card, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 
-import "@fontsource-variable/dancing-script";
-import { palette } from "../utils/colors";
 import { ProjectCard } from "./ProjectCard";
+import { projects } from "../assets/data/projects";
+import { ScrollingContainer } from "./ScrollingContainer";
+import { breakpoints } from "../utils/breakpoints";
 
 export const ProjectSection = () => {
-  const theme = useTheme();
+  const isMobile = useMediaQuery(`(max-width:${breakpoints.sm}px)`);
+  const isMedium = useMediaQuery(`(max-width:${breakpoints.md}px)`);
 
   return (
-    <Box textAlign="left" width="100%" height="100%">
-      <Typography marginBottom="40px" variant="h1" color="textPrimary">
+    <Box
+      justifyContent="center"
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+      width="100%"
+    >
+      <Typography marginBottom="50px" variant="h1" color="textPrimary">
         Projects
       </Typography>
-      <Stack display="flex" direction="row" spacing={2}>
-        <ProjectCard
-          title="Pomo Tasker"
-          description="A CRUD productivity dashboard complete with a pomodoro timer, task management, and productivity stats."
-          githubLink="https://github.com/alexandramj92/pomodoro-timer"
-          liveAppLink="https://pomo-tasker-405fd1be4689.herokuapp.com/signup"
-        />
-      </Stack>
+      <ScrollingContainer
+        gridAutoColumns={isMobile ? "400px" : "300px"}
+        maxContainerWidth={isMobile ? "300px" : isMedium ? "600px" : "100%"}
+      >
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            githubLink={project.githubLink}
+            liveAppLink={project.liveAppLink}
+            Logo={project.image}
+          />
+        ))}
+      </ScrollingContainer>
     </Box>
   );
 };

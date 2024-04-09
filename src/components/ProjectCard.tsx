@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 import { Box, Button, Card, Stack, Typography, useTheme } from "@mui/material";
 
 import "@fontsource-variable/dancing-script";
-import { palette } from "../utils/colors";
 
 interface ProjectCardProps {
   children?: React.ReactNode;
@@ -10,6 +9,13 @@ interface ProjectCardProps {
   description?: string;
   githubLink?: string;
   liveAppLink?: string;
+  Logo?:
+    | React.FunctionComponent<
+        React.SVGProps<SVGSVGElement> & {
+          title?: string | undefined;
+        }
+      >
+    | string;
 }
 
 export const ProjectCard: FunctionComponent<ProjectCardProps> = ({
@@ -18,26 +24,33 @@ export const ProjectCard: FunctionComponent<ProjectCardProps> = ({
   description,
   githubLink,
   liveAppLink,
+  Logo,
 }) => {
   const theme = useTheme();
-
+  console.log(title, Logo, typeof Logo);
   return (
     <Card
       elevation={0}
       sx={{
         backgroundColor: theme.palette.custom.offWhite,
-        // backgroundColor: 'transparent',
-        height: "300px",
-        width: "210px",
+        height: "430px",
+        width: "250px",
         border: `4px double ${theme.palette.primary.main}`,
         borderRadius: "8px",
         padding: "15px",
         position: "relative",
       }}
     >
-      <Typography marginBottom="20px" variant="h2">
+      <Typography marginBottom={Logo ? "5px" : "20px"} variant="h2">
         {title}
       </Typography>
+      <Box textAlign="center">
+        {typeof Logo === "string" ? (
+          <img style={{ maxHeight: "60px" }} src={Logo} alt={`${title} logo`} />
+        ) : (
+          Logo && <Logo title={title} />
+        )}
+      </Box>
       <Typography>{description}</Typography>
       <Stack
         display="flex"
@@ -49,23 +62,26 @@ export const ProjectCard: FunctionComponent<ProjectCardProps> = ({
         left={0}
         bottom={30}
       >
-        <Button
-          onClick={() => githubLink && window.open(githubLink, "_blank")}
-          variant="contained"
-          sx={{
-            color: theme.palette.custom.offWhite,
-          }}
-        >
-          Github
-        </Button>
-        <Button
-          onClick={() => liveAppLink && window.open(liveAppLink, "_blank")}
-          variant="outlined"
-        >
-          Live App
-        </Button>
+        {githubLink && (
+          <Button
+            onClick={() => window.open(githubLink, "_blank")}
+            variant="contained"
+            sx={{
+              color: theme.palette.custom.offWhite,
+            }}
+          >
+            Github
+          </Button>
+        )}
+        {liveAppLink && (
+          <Button
+            onClick={() => window.open(liveAppLink, "_blank")}
+            variant="outlined"
+          >
+            Live App
+          </Button>
+        )}
       </Stack>
-
       {children}
     </Card>
   );
